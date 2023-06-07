@@ -91,12 +91,12 @@ app.use("/api/grocery", groceryRoutes);
 app.use("/api/dietician", dieticianRoutes);
 
 app.use((req, res, next) => {
-  res.sendFile(path.resolve(__dirname, "public", "index.html"));
+  res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
 });
-app.use((req, res, next) => {
-  const error = new HttpError("Could not find this route.", 404);
-  throw error;
-});
+// app.use((req, res, next) => {
+//   const error = new HttpError("Could not find this route.", 404);
+//   throw error;
+// });
 
 app.use((error, req, res, next) => {
   if (res.headerSent) {
