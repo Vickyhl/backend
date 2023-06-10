@@ -8,7 +8,7 @@ export const fetchRecipe = async (req, res) => {
   const rid = req.params.rid;
   console.log(rid);
   const response = await fetch(
-    `https://api.spoonacular.com/recipes/${rid}/information?apiKey=${process.env.RECIPES_API_KEY}&includeNutrition=false`
+    `https://api.spoonacular.com/recipes/${rid}/information?apiKey=9b4de243b92d4e6db8b6f30448e307e0&includeNutrition=false`
   );
 
   const data = await response.json();
