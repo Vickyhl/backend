@@ -63,7 +63,7 @@ export const fetchNutrients = async (req, res) => {
   let good = [];
 
   const response = await fetch(
-    `https://api.spoonacular.com/recipes/${rid}/nutritionWidget.json?apiKey=${process.env.RECIPES_API_KEY}`
+    `https://api.spoonacular.com/recipes/${rid}/nutritionWidget.json?apiKey=9b4de243b92d4e6db8b6f30448e307e0`
   );
   const data = await response.json();
   bad = data.bad;
