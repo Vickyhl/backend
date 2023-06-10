@@ -6,7 +6,7 @@ export const fetchRecipe = async (req, res) => {
   let timers = [];
   let stepTimers = [];
   const rid = req.params.rid;
-
+  console.log(rid);
   const response = await fetch(
     `https://api.spoonacular.com/recipes/${rid}/information?apiKey=${process.env.RECIPES_API_KEY}&includeNutrition=false`
   );
