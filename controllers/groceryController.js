@@ -76,11 +76,11 @@ function mergeSimilarItems(list) {
 export const fetchRecipeGrocery = async (req, res) => {
   const userID = req.params.uid;
   const user = await User.findById(userID).select("RecipesMenus");
-  console.log(user);
   const lastElement = user.RecipesMenus[user.RecipesMenus.length - 1];
   const hexadecimalString = lastElement.toHexString();
 
   const menu = await RecipesMenu.findById(hexadecimalString);
+  console.log(menu);
   const groceryList = mergeIngredients(menu.recipes);
 
   res.status(201).json({ groceryList: groceryList });
