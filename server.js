@@ -19,13 +19,6 @@ import * as url from "url";
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 const port = process.env.PORT || 5000;
 const app = express();
-console.log(__dirname);
-// app.use(cors());
-app.use(bodyParser.json());
-
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -37,6 +30,14 @@ app.use((req, res, next) => {
 
   next();
 });
+
+console.log(__dirname);
+// app.use(cors());
+app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const stripe = await loadStripe(
   "pk_test_51MsU99ESZ6jwBd5mZ07t7amESyMsjXDDVhGcdVnFbdkbpb0zYVmmw4RmFI5LshKqlIkPbzGhmLSMgfE4aY8AYVx400sfpkpWyQ"
