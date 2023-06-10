@@ -87,7 +87,6 @@ export const fetchRecipeGrocery = async (req, res) => {
 
 function mergeIngredients(recipes) {
   const groceryList = [];
-  console.log(recipes);
 
   for (const recipe of recipes) {
     const ingredients = recipe.ingredients;
