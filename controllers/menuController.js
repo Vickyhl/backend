@@ -223,7 +223,7 @@ export async function extractRecipeInfoFunc(id) {
   let instructions;
   let rid;
   await fetch(
-    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.RECIPES_API_KEY}&includeNutrition=false`
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=9b4de243b92d4e6db8b6f30448e307e0&includeNutrition=false`
   )
     .then((response) => response.json())
     .then((data) => {
@@ -270,7 +270,7 @@ export const recipesMenu = async (req, res) => {
   let recipesIDs = [];
   //generating 3-meals plan based on recipes
   await fetch(
-    `https://api.spoonacular.com/mealplanner/generate?apiKey=${process.env.RECIPES_API_KEY}&timeFrame=day&targetCalories=${BMR}&exclude=red meat, butter, souce, sweeteners, heavy cream, potato flakes`
+    `https://api.spoonacular.com/mealplanner/generate?apiKey=9b4de243b92d4e6db8b6f30448e307e0&timeFrame=day&targetCalories=${BMR}&exclude=red meat, butter, souce, sweeteners, heavy cream, potato flakes`
   )
     .then((response) => response.json())
     .then((data) => {
