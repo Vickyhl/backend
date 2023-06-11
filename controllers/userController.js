@@ -191,9 +191,10 @@ export const forgotPassword = async (req, res, next) => {
     subject: "Password reset",
     html: `Click <a href="http://localhost:3000/resetPassword?token=${token}">here</a> to reset your password. This link will expire in 1 hour.`,
   };
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.log(error);
+      console.log("Error details:", error);
       return res
         .status(500)
         .json({ message: "Failed to send reset password email" });
