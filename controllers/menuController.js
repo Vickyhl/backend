@@ -65,7 +65,6 @@ export const updateMenu = async (req, res) => {
     );
     return next(error);
   }
-  // console.log("menuId is:", data.menu.meal1);
 
   if (menu) {
     menu.meal1 = data.menu.meal1;
