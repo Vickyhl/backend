@@ -82,7 +82,7 @@ export const fetchRecipeGrocery = async (req, res) => {
   const menu = await RecipesMenu.findById(hexadecimalString);
   console.log(menu.recipes);
   const groceryList = mergeIngredients(menu.recipes);
-
+  // console.log(groceryList)
   res.status(201).json({ groceryList: groceryList });
 };
 
