@@ -189,7 +189,7 @@ export const forgotPassword = async (req, res, next) => {
     from: "vickyeaf@gmail.com",
     to: req.body.email,
     subject: "Password reset",
-    html: `Click <a href="http://localhost:3000/resetPassword?token=${token}">here</a> to reset your password. This link will expire in 1 hour.`,
+    html: `Click <a href="https://eaf-2.vercel.app/resetPassword?token=${token}">here</a> to reset your password. This link will expire in 1 hour.`,
   };
   try {
     let info = await transporter.sendMail(mailOptions);
