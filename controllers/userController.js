@@ -12,11 +12,7 @@ export const getUsers = async (req, res, next) => {
   try {
     users = await User.find({}, "-password");
   } catch (err) {
-    const error = new HttpError(
-      "Fetching users failed, please try again later.",
-      500
-    );
-    return next(error);
+    return res.json({ message: "Signing up failed, please try again later" });
   }
   res.json({ users: users.map((user) => user.toObject({ getters: true })) });
 };
@@ -36,24 +32,18 @@ export const signup = async (req, res, next) => {
   try {
     existingUser = await User.findOne({ email: email });
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Signing up failed, please try again later" });
+    return res.json({ message: "Signing up failed, please try again later" });
   }
 
   if (existingUser) {
-    return res
-      .status(500)
-      .json({ message: "Signing up failed, please try again later" });
+    return res.json({ message: "Signing up failed, please try again later" });
   }
 
   let hashedPassword;
   try {
     hashedPassword = await bcrypt.hash(password, 12);
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Signing up failed, please try again later" });
+    return res.json({ message: "Signing up failed, please try again later" });
   }
 
   const createdUser = new User({
@@ -68,9 +58,7 @@ export const signup = async (req, res, next) => {
     console.log(createdUser);
     await createdUser.save();
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Signing up failed, please try again later" });
+    return res.json({ message: "Signing up failed, please try again later" });
   }
 
   let token;
@@ -81,12 +69,10 @@ export const signup = async (req, res, next) => {
       { expiresIn: "1h" }
     );
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Signing up failed, please try again later" });
+    return res.json({ message: "Signing up failed, please try again later" });
   }
 
-  res
+  return res
     .status(201)
     .json({ userId: createdUser.id, email: createdUser.email, token: token });
 };
