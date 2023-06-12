@@ -50,7 +50,9 @@ export const signup = async (req, res, next) => {
       "Signing up failed, please try again later",
       422
     );
-    return next(error);
+    return res
+      .status(500)
+      .json({ message: "Signing up failed, please try again later" });
   }
 
   let hashedPassword;
