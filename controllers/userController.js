@@ -51,12 +51,11 @@ export const signup = async (req, res, next) => {
   try {
     hashedPassword = await bcrypt.hash(password, 12);
   } catch (err) {
-    const error = new HttpError(
-      "Could not create user, please try again.",
-      500
-    );
-    return next(error);
+    return res
+      .status(500)
+      .json({ message: "Signing up failed, please try again later" });
   }
+
   const createdUser = new User({
     firstName,
     lastName,
@@ -69,8 +68,9 @@ export const signup = async (req, res, next) => {
     console.log(createdUser);
     await createdUser.save();
   } catch (err) {
-    const error = new HttpError("Signing up failed, please try again.", 500);
-    return next(error);
+    return res
+      .status(500)
+      .json({ message: "Signing up failed, please try again later" });
   }
 
   let token;
@@ -81,11 +81,9 @@ export const signup = async (req, res, next) => {
       { expiresIn: "1h" }
     );
   } catch (err) {
-    const error = new HttpError(
-      "Signing up failed, please try again later.",
-      500
-    );
-    return next(error);
+    return res
+      .status(500)
+      .json({ message: "Signing up failed, please try again later" });
   }
 
   res
